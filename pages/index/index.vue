@@ -1,12 +1,15 @@
 <template>
 	<view class="page">
 		<swiper :indicator-dots="true" :autoplay="true" class="carousel">
-			<swiper-item>
+			<swiper-item v-for="carousel in  carouselList" >
+				<image :src="carousel.image" class="carousel"></image>
+			</swiper-item>
+			<!-- <swiper-item>
 				<image src="../../static/carousel/batmanvssuperman.png" class="carousel"></image>
 			</swiper-item>
 			<swiper-item>
 				<image src="../../static/carousel/spiderman.png" class="carousel"></image>
-			</swiper-item>
+			</swiper-item> -->
 		</swiper>
 	</view>
 </template>
