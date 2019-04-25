@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="page">
 		这是我的页面
 	</view>
 </template>

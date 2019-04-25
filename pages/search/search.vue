@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="page">
 		这是搜索页面
 	</view>
 </template>
