@@ -1,6 +1,6 @@
 <template>
-	<view >
-		这是首页
+	<view>
+		这是搜索页面
 	</view>
 </template>
 
@@ -8,18 +8,15 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
-
+			
 		}
 	}
 </script>
 
 <style>
-	
+
 </style>
