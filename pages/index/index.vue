@@ -15,11 +15,23 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				carouselList: []
 			}
 		},
 		onLoad() {
-
+			var me = this;
+			//请求轮播图数据
+			uni.request({
+				url: 'https://www.imovietrailer.com/superhero/index/carousel/list?qq=309284701', //仅为示例，并非真实接口地址。
+				method: "POST",
+				success: (res) => {
+					if(res.data.status == 200){
+						var carouselList = res.data.data;
+						me.carouselList= res.data.data;
+						console.log(me.carouselList);
+					}
+				}
+			});
 		},
 		methods: {
 
