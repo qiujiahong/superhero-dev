@@ -1,10 +1,33 @@
 <template>
 	<view class="page">
+		<!-- 轮播图 start -->
 		<swiper :indicator-dots="true" :autoplay="true" class="carousel">
 			<swiper-item v-for="carousel in  carouselList" >
 				<image :src="carousel.image" class="carousel"></image>
 			</swiper-item>
 		</swiper>
+		<!-- 轮播图 end -->
+		
+		<!-- 热门超英 start -->
+		<view class="page-block super-hot">
+			<view class="hot-title-wapper">
+				<image src="../../static/icos/hot.png" class="hot-ico"></image>
+				<view class="hot-title">
+					热门超英
+				</view>
+			</view>
+		</view>
+		
+		<scroll-view scroll-x="true" class="page-block hot">
+			热门超英热门超英热门超英热门超英热门超英热门超英热门超英热门超英热门超英热门超英热门超英
+			<!-- <view></view>
+			<view></view>
+			<view></view>
+			<view></view> -->
+		</scroll-view>
+		<!-- 热门超英 end -->
+		
+		
 	</view>
 </template>
 
