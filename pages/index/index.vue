@@ -4,12 +4,6 @@
 			<swiper-item v-for="carousel in  carouselList" >
 				<image :src="carousel.image" class="carousel"></image>
 			</swiper-item>
-			<!-- <swiper-item>
-				<image src="../../static/carousel/batmanvssuperman.png" class="carousel"></image>
-			</swiper-item>
-			<swiper-item>
-				<image src="../../static/carousel/spiderman.png" class="carousel"></image>
-			</swiper-item> -->
 		</swiper>
 	</view>
 </template>
@@ -29,7 +23,6 @@
 				method: "POST",
 				success: (res) => {
 					if(res.data.status == 200){
-						//var carouselList = res.data.data;
 						this.carouselList= res.data.data;
 						console.log(this.carouselList);
 					}
