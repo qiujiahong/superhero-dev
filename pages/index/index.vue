@@ -19,11 +19,38 @@
 		</view>
 		
 		<scroll-view scroll-x="true" class="page-block hot">
-			热门超英热门超英热门超英热门超英热门超英热门超英热门超英热门超英热门超英热门超英热门超英
-			<!-- <view></view>
-			<view></view>
-			<view></view>
-			<view></view> -->
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
+					<view class="movie-name">
+						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
+					</view>
+					<view class="">
+					</view>
+				</view>
+			</view>
+			
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
+					<view class="movie-name">
+						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
+					</view>
+					<view class="">
+					</view>
+				</view>
+			</view>
+			
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
+					<view class="movie-name">
+						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
+					</view>
+					<view class="">
+					</view>
+				</view>
+			</view>
 		</scroll-view>
 		<!-- 热门超英 end -->
 		
