@@ -20,11 +20,11 @@
 		
 		<scroll-view scroll-x="true" class="page-block hot">
 			
-			<view class="single-poster">
+			<view class="single-poster" v-for="superHero in hotSuperheroList">
 				<view class="poster-wapper">
-					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
+					<image :src="superHero.cover" class="poster"></image>
 					<view class="movie-name">
-						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
+						{{superHero.name}}
 					</view>
 					<view class="movie-score-wapper">
 						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
@@ -38,88 +38,7 @@
 					</view>
 				</view>
 			</view>
-			
-			
-			<view class="single-poster">
-				<view class="poster-wapper">
-					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
-					<view class="movie-name">
-						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
-					</view>
-					<view class="movie-score-wapper">
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
-						<view class="move-score">
-							9.1
-						</view>
-					</view>
-				</view>
-			</view>
-			
-			
-			<view class="single-poster">
-				<view class="poster-wapper">
-					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
-					<view class="movie-name">
-						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
-					</view>
-					<view class="movie-score-wapper">
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
-						<view class="move-score">
-							9.1
-						</view>
-					</view>
-				</view>
-			</view>
-			
-			
-			
-			<view class="single-poster">
-				<view class="poster-wapper">
-					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
-					<view class="movie-name">
-						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
-					</view>
-					<view class="movie-score-wapper">
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
-						<view class="move-score">
-							9.1
-						</view>
-					</view>
-				</view>
-			</view>
-			
-			
-			<view class="single-poster">
-				<view class="poster-wapper">
-					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
-					<view class="movie-name">
-						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
-					</view>
-					<view class="movie-score-wapper">
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
-						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
-						<view class="move-score">
-							9.1
-						</view>
-					</view>
-				</view>
-			</view>
-			
+		
 		</scroll-view>
 		<!-- 热门超英 end -->
 		
@@ -133,7 +52,8 @@
 	export default {
 		data() {
 			return {
-				carouselList: []
+				carouselList: [],
+				hotSuperheroList: []
 			}
 		},
 		onLoad() {
@@ -148,6 +68,19 @@
 					if(res.data.status == 200){
 						this.carouselList= res.data.data;
 						console.log(this.carouselList);
+					}
+				}
+			});
+			
+			//查询热门超英
+			serverUrl = common.serverUrl+ "/index/movie/hot?"+ common.qqStr+"&type=superhero";
+			uni.request({
+				url: serverUrl ,
+				method: "POST",
+				success: (res) => {
+					if(res.data.status == 200){
+						this.hotSuperheroList= res.data.data;
+						console.log(this.hotSuperheroList);
 					}
 				}
 			});
