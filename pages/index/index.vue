@@ -32,6 +32,8 @@
 </template>
 
 <script>
+	import common from "../../common/common.js";
+	
 	export default {
 		data() {
 			return {
@@ -39,10 +41,12 @@
 			}
 		},
 		onLoad() {
+			
+			var serverUrl = common.serverUrl+ "/index/carousel/list?"+ common.qqStr;
 			//var me = this;
 			//请求轮播图数据
 			uni.request({
-				url: 'https://www.imovietrailer.com/superhero/index/carousel/list?qq=309284701', //仅为示例，并非真实接口地址。
+				url: serverUrl ,//'https://www.imovietrailer.com/superhero/index/carousel/list?qq=309284701', //仅为示例，并非真实接口地址。
 				method: "POST",
 				success: (res) => {
 					if(res.data.status == 200){
