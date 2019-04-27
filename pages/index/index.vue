@@ -19,16 +19,6 @@
 		</view>
 		
 		<scroll-view scroll-x="true" class="page-block hot">
-			<view class="single-poster">
-				<view class="poster-wapper">
-					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
-					<view class="movie-name">
-						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
-					</view>
-					<view class="">
-					</view>
-				</view>
-			</view>
 			
 			<view class="single-poster">
 				<view class="poster-wapper">
@@ -36,10 +26,19 @@
 					<view class="movie-name">
 						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
 					</view>
-					<view class="">
+					<view class="movie-score-wapper">
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
+						<view class="move-score">
+							9.1
+						</view>
 					</view>
 				</view>
 			</view>
+			
 			
 			<view class="single-poster">
 				<view class="poster-wapper">
@@ -47,10 +46,80 @@
 					<view class="movie-name">
 						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
 					</view>
-					<view class="">
+					<view class="movie-score-wapper">
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
+						<view class="move-score">
+							9.1
+						</view>
 					</view>
 				</view>
 			</view>
+			
+			
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
+					<view class="movie-name">
+						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
+					</view>
+					<view class="movie-score-wapper">
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
+						<view class="move-score">
+							9.1
+						</view>
+					</view>
+				</view>
+			</view>
+			
+			
+			
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
+					<view class="movie-name">
+						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
+					</view>
+					<view class="movie-score-wapper">
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
+						<view class="move-score">
+							9.1
+						</view>
+					</view>
+				</view>
+			</view>
+			
+			
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/poster/civilwar.jpg" class="poster"></image>
+					<view class="movie-name">
+						蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠蝙蝠侠
+					</view>
+					<view class="movie-score-wapper">
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
+						<image src="../../static/icos/star-gray.png" class="star-ico"></image>
+						<view class="move-score">
+							9.1
+						</view>
+					</view>
+				</view>
+			</view>
+			
 		</scroll-view>
 		<!-- 热门超英 end -->
 		
