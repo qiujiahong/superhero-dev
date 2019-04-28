@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<!-- 使用自定义标贴 -->
-		<helloComp></helloComp>
+		<helloComp myval="Hello nick qiu."></helloComp>
 		<!-- 轮播图 start -->
 		<swiper :indicator-dots="true" :autoplay="true" class="carousel">
 			<swiper-item v-for="carousel in  carouselList" >
