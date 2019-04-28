@@ -1,7 +1,8 @@
 <template>
 	<view class="page">
 		<!-- 使用自定义标贴 -->
-		<helloComp myval="Hello nick qiu."></helloComp>
+		<!-- <helloComp myval="Hello nick qiu."></helloComp> -->
+		<!-- <trailerStars innerScore="9" showNum="1"></trailerStars> -->
 		<!-- 轮播图 start -->
 		<swiper :indicator-dots="true" :autoplay="true" class="carousel">
 			<swiper-item v-for="carousel in  carouselList" >
@@ -28,7 +29,8 @@
 					<view class="movie-name">
 						{{superHero.name}}
 					</view>
-					<view class="movie-score-wapper">
+					<trailerStars :innerScore="superHero.score" showNum="1"></trailerStars>
+					<!-- <view class="movie-score-wapper">
 						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
 						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
 						<image src="../../static/icos/star-yellow.png" class="star-ico"></image>
@@ -37,14 +39,11 @@
 						<view class="move-score">
 							9.1
 						</view>
-					</view>
+					</view> -->
 				</view>
 			</view>
-		
 		</scroll-view>
 		<!-- 热门超英 end -->
-		
-		
 	</view>
 </template>
 
@@ -52,6 +51,7 @@
 	import common from "../../common/common.js";
 	// 导入自定义组件
 	import helloComp from "../../components/helloComp.vue";
+	import trailerStars from "../../components/trailerStars.vue";
 	
 	export default {
 		data() {
@@ -92,8 +92,10 @@
 		methods: {
 
 		},
+		// 注册组件
 		components: {
-			helloComp
+			helloComp,
+			trailerStars
 		}
 	}
 </script>

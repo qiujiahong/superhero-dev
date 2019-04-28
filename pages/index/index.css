@@ -50,7 +50,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.movie-score-wapper{
+/* .movie-score-wapper{
 	display: flex;
 	flex-direction: row;
 }
@@ -63,5 +63,5 @@
 	font-size: 12px;
 	color: grey;
 	margin-left: 8upx;
-}
+} */
 /* 热门超英  end */
