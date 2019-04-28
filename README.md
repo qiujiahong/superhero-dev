@@ -3,6 +3,8 @@
 
 
 * [在手机端预览微信小程序](docs/preview_wechat.md)
+* [添加自定义组件](docs/add_commponent.md)
+* [uniapp学习资料](https://uniapp.dcloud.io/)
 * [设置安全域名](docs/set_web.md)
 * [后端接口文档](https://www.imovietrailer.com/superhero/doc.html)
 

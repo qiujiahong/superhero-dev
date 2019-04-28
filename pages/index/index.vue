@@ -1,5 +1,7 @@
 <template>
 	<view class="page">
+		<!-- 使用自定义标贴 -->
+		<helloComp></helloComp>
 		<!-- 轮播图 start -->
 		<swiper :indicator-dots="true" :autoplay="true" class="carousel">
 			<swiper-item v-for="carousel in  carouselList" >
@@ -48,6 +50,8 @@
 
 <script>
 	import common from "../../common/common.js";
+	// 导入自定义组件
+	import helloComp from "../../components/helloComp.vue";
 	
 	export default {
 		data() {
@@ -87,6 +91,9 @@
 		},
 		methods: {
 
+		},
+		components: {
+			helloComp
 		}
 	}
 </script>
