@@ -65,3 +65,13 @@
 	margin-left: 8upx;
 } */
 /* 热门超英  end */
+
+
+/* 热门预告 start */
+.hot-movies{
+	display: flex;
+}
+.hot-movie-single{
+	
+}
+/* 热门预告 end */

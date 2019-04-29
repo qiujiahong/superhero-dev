@@ -43,7 +43,29 @@
 				</view>
 			</view>
 		</scroll-view>
-		<!-- 热门超英 end -->
+		<!-- 热门超英 end-->
+		
+		<!-- 热门预告 start  -->
+		<view class="page-block super-hot">
+			<view class="hot-title-wapper">
+				<image src="../../static/icos/interest.png" class="hot-ico"></image>
+				<view class="hot-title">
+					热门预告
+				</view>
+			</view>
+		</view>
+		
+		<view class="hot-movies page-block">
+			<video 
+				v-for="trailer in hotTrailerList"
+				:src="trailer.trailer" 
+				:poster="trailer.poster"
+				class="hot-movie-single"
+				controls></video>
+		</view>
+		<!-- 热门预告 end  -->
+		
+		
 	</view>
 </template>
 
@@ -57,7 +79,8 @@
 		data() {
 			return {
 				carouselList: [],
-				hotSuperheroList: []
+				hotSuperheroList: [],
+				hotTrailerList: []
 			}
 		},
 		onLoad() {
@@ -85,6 +108,20 @@
 					if(res.data.status == 200){
 						this.hotSuperheroList= res.data.data;
 						console.log(this.hotSuperheroList);
+					}
+				}
+			});
+			
+			
+			//查询热门预告
+			serverUrl = common.serverUrl+ "/index/movie/hot?"+ common.qqStr+"&type=trailer";
+			uni.request({
+				url: serverUrl ,
+				method: "POST",
+				success: (res) => {
+					if(res.data.status == 200){
+						this.hotTrailerList= res.data.data;
+						console.log(this.hotTrailerList);
 					}
 				}
 			});
