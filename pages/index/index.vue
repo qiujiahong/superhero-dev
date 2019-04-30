@@ -66,6 +66,36 @@
 		<!-- 热门预告 end  -->
 		
 		
+		<!-- 猜你喜欢 start  -->
+		<view class="page-block super-hot">
+			<view class="hot-title-wapper">
+				<image src="../../static/icos/guess-u-like.png" class="hot-ico"></image>
+				<view class="hot-title">
+					猜你喜欢
+				</view>
+			</view>
+		</view>
+		
+		<view class="page-block guess-u-like">
+			<view class="sigle-like-movie">
+				<image src="../../static/carousel/batmanvssuperman.png" class="like-movie"></image>
+				<view class="movie-desc">
+					<view class="movie-title">
+						蝙蝠侠大战超人蝙蝠侠大战超人蝙蝠侠大战超人蝙蝠侠大战超人蝙蝠侠大战超人
+					</view>
+					<trailerStars :innerScore="9.1" showNum="1"></trailerStars>
+					<view class="movie-info">
+						2018 / 美国 / 科幻 动作
+					</view>
+					<view class="movie-info">
+						主演 张三。。里斯。王五
+					</view>
+				</view>
+				<view class="movie-oper">
+				</view>
+			</view>
+		</view>
+		<!-- 猜你喜欢 end  -->
 	</view>
 </template>
 

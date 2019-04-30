@@ -50,28 +50,56 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-/* .movie-score-wapper{
-	display: flex;
-	flex-direction: row;
-}
-.star-ico{
-	width: 20upx;
-	height: 20upx;
-	margin-top: 6upx;
-}
-.move-score{
-	font-size: 12px;
-	color: grey;
-	margin-left: 8upx;
-} */
 /* 热门超英  end */
 
 
 /* 热门预告 start */
 .hot-movies{
 	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0uxp 20upx 20upx 20upx;
 }
 .hot-movie-single{
-	
+	width: 350upx;
+	height: 220upx;
+	margin-top: 10upx;
 }
 /* 热门预告 end */
+
+
+/* 猜你喜欢 start */
+
+.guess-u-like{
+	display: flex;
+	flex-direction: column;
+}
+.sigle-like-movie{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 30upx 20upx;
+}
+.like-movie{
+	width: 180upx;
+	height: 240upx;
+	border-radius: 3%;
+}
+.movie-desc{
+	display: flex;
+	flex-direction: column;
+	width: 340upx;
+}
+.movie-title{
+	/* name超出则省略 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.movie-info{
+	color: #808080;
+	font-size: 14px;
+}
+
+/* 猜你喜欢 end */
