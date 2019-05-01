@@ -213,6 +213,10 @@
 		methods: {
 			refresh(){
 				//查询猜你喜欢
+				uni.showLoading({
+					// 防止用户点击某一些按钮
+					mask:true
+				})
 				var serverUrl = common.serverUrl+ "/index/guessULike?"+ common.qqStr;
 				uni.request({
 					url: serverUrl ,
@@ -225,6 +229,7 @@
 						}
 					},
 					complete:() => {
+						uni.hideLoading();
 						uni.stopPullDownRefresh();
 					}
 				});
