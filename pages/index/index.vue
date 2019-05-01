@@ -77,7 +77,32 @@
 		</view>
 		
 		<view class="page-block guess-u-like">
-			<view class="sigle-like-movie">
+			
+			<view class="sigle-like-movie" v-for="guess in guessULikeList">
+				<image :src="guess.cover" class="like-movie"></image>
+				<view class="movie-desc">
+					<view class="movie-title">
+						{{guess.name}}
+					</view>
+					<trailerStars :innerScore="9.1" showNum="1"></trailerStars>
+					<view class="movie-info">
+						{{guess.basicInfo}}
+					</view>
+					<view class="movie-info">
+						{{guess.releaseDate}}
+					</view>
+				</view>
+				<view class="movie-oper" @click="praiseMe">
+					<image src="../../static/icos/praise.png" class="praise-ico"></image>
+					<view class="praise-me">
+						点赞
+					</view>
+					<view :animation="animationData" class="praise-me animation-opacity">
+						+1
+					</view>
+				</view>
+			</view>
+			<!-- <view class="sigle-like-movie">
 				<image src="../../static/carousel/batmanvssuperman.png" class="like-movie"></image>
 				<view class="movie-desc">
 					<view class="movie-title">
@@ -100,7 +125,7 @@
 						+1
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		<!-- 猜你喜欢 end  -->
 	</view>
@@ -118,8 +143,8 @@
 				carouselList: [],
 				hotSuperheroList: [],
 				hotTrailerList: [],
+				guessULikeList: [],
 				animationData:{
-					
 				},
 			}
 		},
@@ -168,6 +193,20 @@
 					if(res.data.status == 200){
 						this.hotTrailerList= res.data.data;
 						console.log(this.hotTrailerList);
+					}
+				}
+			});
+			
+			//查询猜你喜欢
+			serverUrl = common.serverUrl+ "/index/guessULike?"+ common.qqStr;
+			uni.request({
+				url: serverUrl ,
+				method: "POST",
+				success: (res) => {
+					if(res.data.status == 200){
+						this.guessULikeList= res.data.data;
+						console.log("guessULikeList:");
+						console.log(this.guessULikeList);
 					}
 				}
 			});
