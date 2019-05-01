@@ -7,6 +7,7 @@
 * [自定义组件传值](docs/commponent_input.md)
 * [动画](docs/animation.md)
 * [下拉刷新](docs/down_refreash.md)
+* [loading框](docs/loading.md)
 
 
 * [uniapp学习资料](https://uniapp.dcloud.io/)
