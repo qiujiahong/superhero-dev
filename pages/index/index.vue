@@ -91,10 +91,13 @@
 						主演 张三。。里斯。王五
 					</view>
 				</view>
-				<view class="movie-oper">
+				<view class="movie-oper" @click="praiseMe">
 					<image src="../../static/icos/praise.png" class="praise-ico"></image>
 					<view class="praise-me">
 						点赞
+					</view>
+					<view :animation="animationData" class="praise-me animation-opacity">
+						+1
 					</view>
 				</view>
 			</view>
@@ -114,10 +117,19 @@
 			return {
 				carouselList: [],
 				hotSuperheroList: [],
-				hotTrailerList: []
+				hotTrailerList: [],
+				animationData:{
+					
+				},
 			}
 		},
+		onUnload() {
+			//页面卸载的时候，清除动画数据
+			this.animationData={};
+		},
 		onLoad() {
+			//在页面创建的时候创建一个临时动画对象
+			this.animation = uni.createAnimation();
 			
 			var serverUrl = common.serverUrl+ "/index/carousel/list?"+ common.qqStr;
 			//var me = this;
@@ -161,7 +173,16 @@
 			});
 		},
 		methods: {
-
+			//实现点赞动画效果
+			praiseMe(){
+				console.log("praiseMe")
+				//构建动画数据，并通过STEP来表示这组动画的完成
+				this.animation.translateY(-60).opacity(1).step({
+					duration: 400
+				});
+				//导出动画数据到VUE组件，实现组件的动画效果
+				this.animationData = this.animation.export();
+			}
 		},
 		// 注册组件
 		components: {
