@@ -4,6 +4,11 @@
 	display: flex;
 	flex-direction: row;
 	padding: 0upx 20upx 20upx 20upx;
+	/* 固定搜索栏目 */
+	position: fixed;
+	top: 100;
+	z-index: 2000;
+	background-color: #f8f8f8;
 }
 .search-icon{
 	width: 40upx;
@@ -23,3 +28,21 @@
 	padding: 0upx 10upx;
 }
 /* 搜索框 end */
+
+
+/* 预告片列表 start */
+.poster{
+	width: 200upx;
+	height: 270upx;
+}
+.movie-list{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	padding: 100upx 10upx 0 10upx;
+}
+.movie-wapper{
+	padding: 10upx 20upx;
+}
+/* 预告片列表 end  */
