@@ -6,7 +6,9 @@
 		<!-- 轮播图 start -->
 		<swiper :indicator-dots="true" :autoplay="true" class="carousel">
 			<swiper-item v-for="carousel in  carouselList" >
-				<image :src="carousel.image" class="carousel"></image>
+				<navigator open-type="navigate" :url="'../movie/movie?trailerId='+carousel.movieId">					
+					<image :src="carousel.image" class="carousel"></image>
+				</navigator>
 			</swiper-item>
 		</swiper>
 		<!-- 轮播图 end -->
@@ -25,7 +27,9 @@
 			
 			<view class="single-poster" v-for="superHero in hotSuperheroList">
 				<view class="poster-wapper">
-					<image :src="superHero.cover" class="poster"></image>
+					<navigator open-type="navigate" :url="'../movie/movie?trailerId='+superHero.id">	
+						<image :src="superHero.cover" class="poster"></image>
+					</navigator>
 					<view class="movie-name">
 						{{superHero.name}}
 					</view>
@@ -79,7 +83,9 @@
 		<view class="page-block guess-u-like">
 			
 			<view class="sigle-like-movie" v-for="(guess,gIndex) in guessULikeList">
-				<image :src="guess.cover" class="like-movie"></image>
+				<navigator open-type="navigate" :url="'../movie/movie?trailerId='+guess.id">	
+					<image :src="guess.cover" class="like-movie"></image>
+				</navigator>
 				<view class="movie-desc">
 					<view class="movie-title">
 						{{guess.name}}
