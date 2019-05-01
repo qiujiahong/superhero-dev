@@ -1,0 +1,25 @@
+
+/* 搜索框 start */
+.search-block{
+	display: flex;
+	flex-direction: row;
+	padding: 0upx 20upx 20upx 20upx;
+}
+.search-icon{
+	width: 40upx;
+	height: 40upx;
+}
+.search-text{
+	font-size: 14px;
+	background-color: #eaeaea;
+	height: 60upx;
+	width: 650upx;
+}
+.search-ico-wapper{
+	background-color: #eaeaea;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0upx 10upx;
+}
+/* 搜索框 end */

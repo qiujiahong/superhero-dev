@@ -1,6 +1,11 @@
 <template>
 	<view class="page">
-		这是搜索页面
+		<view class="search-block">
+			<view class="search-ico-wapper">
+				<image src="../../static/icos/search.png" class="search-icon"></image>
+			</view>
+			<input type="text" placeholder="搜索预告" maxlength="10"  class="search-text" focus/>
+		</view>
 	</view>
 </template>
 
@@ -18,5 +23,8 @@
 </script>
 
 <style>
+	
+	@import url("search.css");
+	
 
 </style>
