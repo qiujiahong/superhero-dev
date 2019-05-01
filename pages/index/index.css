@@ -101,5 +101,24 @@
 	color: #808080;
 	font-size: 14px;
 }
-
+/* 点赞css */
+.movie-oper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 140upx;
+	border-left: dashed 2px;
+	border-left-color: #dbdbda;
+}
+.praise-ico{
+	width: 40upx;
+	height: 40upx;
+	align-self: center;
+}
+.praise-me{
+	font-size: 14px;
+	color: #feab2a;
+	align-self: center;
+	
+}
 /* 猜你喜欢 end */

@@ -92,6 +92,10 @@
 					</view>
 				</view>
 				<view class="movie-oper">
+					<image src="../../static/icos/praise.png" class="praise-ico"></image>
+					<view class="praise-me">
+						点赞
+					</view>
 				</view>
 			</view>
 		</view>
