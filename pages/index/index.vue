@@ -154,10 +154,15 @@
 		onUnload() {
 			//页面卸载的时候，清除动画数据
 			this.animationData={};
+			this.animationDataArr = [
+					{},{},{},{},{},
+				]
 		},
 		onLoad() {
+			// #ifdef APP-PLUS || MP-WEIXIN
 			//在页面创建的时候创建一个临时动画对象
 			this.animation = uni.createAnimation();
+			// #endif
 			
 			var serverUrl = common.serverUrl+ "/index/carousel/list?"+ common.qqStr;
 			//var me = this;
@@ -217,6 +222,7 @@
 		methods: {
 			//实现点赞动画效果
 			praiseMe(e){
+				// #ifdef APP-PLUS || MP-WEIXIN
 				//所有的e.currentTarget.dataset的值需要使用小写
 				var gIndex = e.currentTarget.dataset.gindex;
 				console.log(gIndex)
@@ -238,6 +244,7 @@
 					this.animationData = this.animation;
 					this.animationDataArr[gIndex] = this.animationData.export();
 				}.bind(this),500);
+				// #endif
 			}
 		},
 		// 注册组件
