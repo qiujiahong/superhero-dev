@@ -96,6 +96,17 @@
 			// 		uni.hideLoading();
 			// 	}
 			// });
+		},
+		onReachBottom(){
+			console.log("看到底裤了")
+			var page = this.page + 1 ;//查询下一页面
+			var keywords = this.keywords; //获得当前页面data的搜索值
+			var totalPages = this.totalPages;
+			if(page >= totalPages){
+				console.log("没有页面了");
+				return;
+			}
+			this.pagedTrailerList(keywords,page,15);
 		}
 	}
 </script>
