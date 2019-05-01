@@ -78,7 +78,7 @@
 		
 		<view class="page-block guess-u-like">
 			
-			<view class="sigle-like-movie" v-for="guess in guessULikeList">
+			<view class="sigle-like-movie" v-for="(guess,gIndex) in guessULikeList">
 				<image :src="guess.cover" class="like-movie"></image>
 				<view class="movie-desc">
 					<view class="movie-title">
@@ -92,12 +92,12 @@
 						{{guess.releaseDate}}
 					</view>
 				</view>
-				<view class="movie-oper" @click="praiseMe">
+				<view class="movie-oper" :data-gIndex="gIndex" @click="praiseMe">
 					<image src="../../static/icos/praise.png" class="praise-ico"></image>
 					<view class="praise-me">
 						点赞
 					</view>
-					<view :animation="animationData" class="praise-me animation-opacity">
+					<view :animation="animationDataArr[gIndex]" class="praise-me animation-opacity">
 						+1
 					</view>
 				</view>
@@ -146,6 +146,9 @@
 				guessULikeList: [],
 				animationData:{
 				},
+				animationDataArr:[
+					{},{},{},{},{},
+				]
 			}
 		},
 		onUnload() {
@@ -213,21 +216,27 @@
 		},
 		methods: {
 			//实现点赞动画效果
-			praiseMe(){
-				console.log("praiseMe")
+			praiseMe(e){
+				//所有的e.currentTarget.dataset的值需要使用小写
+				var gIndex = e.currentTarget.dataset.gindex;
+				console.log(gIndex)
 				//构建动画数据，并通过STEP来表示这组动画的完成
 				this.animation.translateY(-60).opacity(1).step({
 					duration: 400
 				});
 				//导出动画数据到VUE组件，实现组件的动画效果
-				this.animationData = this.animation.export();
+				//this.animationData = this.animation.export();
+				this.animationData = this.animation;
+				this.animationDataArr[gIndex] = this.animationData.export();
 				
 				//实现还原业务
 				setTimeout(function(){
 					this.animation.translateY(0).opacity(0).step({
 						duration: 0
 					});
-					this.animationData = this.animation.export();
+					//this.animationData = this.animation.export();
+					this.animationData = this.animation;
+					this.animationDataArr[gIndex] = this.animationData.export();
 				}.bind(this),500);
 			}
 		},
