@@ -158,6 +158,9 @@
 					{},{},{},{},{},
 				]
 		},
+		onPullDownRefresh() {
+			this.refresh();
+		},
 		onLoad() {
 			// #ifdef APP-PLUS || MP-WEIXIN
 			//在页面创建的时候创建一个临时动画对象
@@ -204,22 +207,29 @@
 					}
 				}
 			});
+			this.refresh();
 			
-			//查询猜你喜欢
-			serverUrl = common.serverUrl+ "/index/guessULike?"+ common.qqStr;
-			uni.request({
-				url: serverUrl ,
-				method: "POST",
-				success: (res) => {
-					if(res.data.status == 200){
-						this.guessULikeList= res.data.data;
-						console.log("guessULikeList:");
-						console.log(this.guessULikeList);
-					}
-				}
-			});
 		},
 		methods: {
+			refresh(){
+				//查询猜你喜欢
+				var serverUrl = common.serverUrl+ "/index/guessULike?"+ common.qqStr;
+				uni.request({
+					url: serverUrl ,
+					method: "POST",
+					success: (res) => {
+						if(res.data.status == 200){
+							this.guessULikeList= res.data.data;
+							console.log("guessULikeList:");
+							console.log(this.guessULikeList);
+						}
+					},
+					complete:() => {
+						uni.stopPullDownRefresh();
+					}
+				});
+				console.log("refresh")
+			},
 			//实现点赞动画效果
 			praiseMe(e){
 				// #ifdef APP-PLUS || MP-WEIXIN
