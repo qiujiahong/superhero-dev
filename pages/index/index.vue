@@ -182,6 +182,14 @@
 				});
 				//导出动画数据到VUE组件，实现组件的动画效果
 				this.animationData = this.animation.export();
+				
+				//实现还原业务
+				setTimeout(function(){
+					this.animation.translateY(0).opacity(0).step({
+						duration: 0
+					});
+					this.animationData = this.animation.export();
+				}.bind(this),500);
 			}
 		},
 		// 注册组件
