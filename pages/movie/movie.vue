@@ -1,5 +1,6 @@
 <template>
 	<view class="page">
+		<!-- 视频播放 start -->
 		<view class="player">
 			<video 
 				:src="tailerInfo.trailer" 
@@ -7,6 +8,23 @@
 				class="movie"
 				controls></video>
 		</view>
+		<!-- 视频播放 end -->
+		
+		<!-- 影片基本信息 start -->
+		<view class="movie-info">
+			<image :src="tailerInfo.cover" class="cover"></image>
+			<view class="movie-desc">
+				<view class="title">{{tailerInfo.name}}</view>
+				<view class="basic-info">{{tailerInfo.basicInfo}}</view>
+				<view class="basic-info">{{tailerInfo.originalName}}</view>
+				<view class="basic-info">{{tailerInfo.totalTime}}</view>
+				<view class="basic-info">{{tailerInfo.releaseDate}}</view>
+				<view class="score-block">
+					
+				</view>
+			</view>
+		</view>
+		<!-- 影片基本信息 end -->
 	</view>
 </template>
 

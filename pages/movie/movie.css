@@ -7,3 +7,34 @@
 	width: 100%;
 	height: 440upx;
 }
+
+/* 影片基本信息  start */
+.movie-info{
+	padding: 40upx 20upx;
+	display: flex;
+	flex-direction: row;
+	background-color: #F7F4F9;
+}
+.cover{
+	width: 280upx;
+	height: 380upx;
+}
+.movie-desc{
+	display: flex;
+	flex-direction: column;
+	margin-left: 30upx;
+	width: 400upx;
+}
+.title{
+	font-size: 30px;
+}
+.basic-info{
+	color: darkgray;
+	font-size: 13px;
+	line-height: 36upx;
+	
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/* 影片基本信息  end */
