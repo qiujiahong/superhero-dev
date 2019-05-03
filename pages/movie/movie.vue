@@ -48,13 +48,23 @@
 		<view class="scroll-block">
 			<view class="plots-title">演职人员</view>
 			<scroll-view scroll-x class="scroll-list">
-				<view class="actor-wapper" v-for="director in directorArray">
-					<image :src="director.photo" class="single-actor" mode="aspectFill"></image>
+				<view class="actor-wapper" v-for="(director,staffIndex) in directorArray">
+					<image 
+						:src="director.photo" 
+						class="single-actor" 
+						@click="lookStaffs"
+						:data-staffIndex="staffIndex"
+						mode="aspectFill"></image>
 					<view class="actor-name">{{director.name}}</view>
 					<view class="actor-role">{{director.actName}}</view>
 				</view>
-				<view class="actor-wapper" v-for="actor in actorArray">
-					<image :src="actor.photo" class="single-actor" mode="aspectFill"></image>
+				<view class="actor-wapper" v-for="(actor,actorIndex) in actorArray">
+					<image 
+						:src="actor.photo" 
+						class="single-actor" 
+						@click="lookStaffs"
+						:data-staffIndex="actorIndex + directorArray.length"
+						mode="aspectFill"></image>
 					<view class="actor-name">{{actor.name}}</view>
 					<view class="actor-role">{{actor.actName}}</view>
 				</view>
@@ -92,11 +102,32 @@
 			lockMe(e) {
 				var imgIndex = e.currentTarget.dataset.imgindex;
 				console.log(imgIndex)
-				// debugger
 				uni.previewImage({
 					current: this.plotPicsArray[imgIndex],
 					urls: this.plotPicsArray
 				})
+			},
+			lookStaffs(e){
+				var staffIndex = e.currentTarget.dataset.staffindex;
+				//拼接导演和演员的数组，成为一个新数组
+				var directorArray = this.directorArray;
+				var actorArray = this.actorArray;
+				var newStaffArray = [];
+				newStaffArray = newStaffArray.concat(directorArray).concat(actorArray);
+				
+				var urls = [];
+				for(var i =0;i<newStaffArray.length;i++){
+					var tempPhoto = newStaffArray[i].photo;
+					urls.push(tempPhoto);
+				}
+				//console.log(urls)
+				//console.log(Number.parseInt(staffIndex))
+				//console.log(urls[Number.parseInt(staffIndex)])
+				uni.previewImage({
+					current: urls[staffIndex],
+					urls: urls
+				})
+				
 			}
 		},
 		onLoad(params) {
