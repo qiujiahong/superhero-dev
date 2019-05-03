@@ -38,9 +38,7 @@
 		<!-- 影片基本信息 end -->
 		
 		<view class="line-wapper">
-			<view class="line">
-				
-			</view>
+			<view class="line"></view>
 		</view>
 		
 		<!-- 剧情介绍 start -->
@@ -60,7 +58,10 @@
 	export default {
 		data() {
 			return {
-				tailerInfo:{}
+				tailerInfo:{},
+				plotPicsArray:[], //剧照
+				directorArray: [], // 导演列表 
+				actorArray:[],  // 演员列表
 			}
 		},
 		methods: {
@@ -79,6 +80,40 @@
 					if(res.data.status == 200){
 						var tailerInfo= res.data.data;
 						this.tailerInfo = tailerInfo;
+						// 把剧照的字符串转换成为json array
+						this.plotPicsArray = JSON.parse(tailerInfo.plotPics);
+						console.log(this.plotPicsArray)
+						// debugger
+					}
+				}
+			});
+			
+			// 获取导演
+			var serverUrl = common.serverUrl+ "/search/staff/"+trailerId +"/1?qq="+common.qqStr;
+			uni.request({
+				url: serverUrl ,
+				method: "POST",
+				success: (res) => {
+					if(res.data.status == 200){
+						// var directorArray= res.data.data;
+						// this.directorArray= directorArray;
+						this.directorArray=  res.data.data;
+						console.log(this.directorArray)
+						// debugger
+					}
+				}
+			});
+			
+			// 获取演员
+			var serverUrl = common.serverUrl+ "/search/staff/"+trailerId +"/2?qq="+common.qqStr;
+			uni.request({
+				url: serverUrl ,
+				method: "POST",
+				success: (res) => {
+					if(res.data.status == 200){
+						this.actorArray= res.data.data;
+						console.log(this.actorArray)
+						// debugger
 					}
 				}
 			});
