@@ -47,6 +47,18 @@
 			<view class="plots-desc">{{tailerInfo.plotDesc}}</view>
 		</view>
 		<!-- 剧情介绍 end -->
+		
+		<!-- 剧照 start -->
+		<view class="scroll-block">
+			<view class="plots-title">剧照</view>
+			<scroll-view scroll-x class="scroll-list">
+				<image v-for="img in plotPicsArray"
+				 :src="img" 
+				 class="plot-image"
+				 mode="aspectFill"></image>
+			</scroll-view>
+		</view>
+		<!-- 剧照 end -->
 
 	</view>
 </template>

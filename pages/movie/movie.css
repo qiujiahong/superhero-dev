@@ -86,3 +86,25 @@
 	font-size: 16px;
 }
 /* 剧情介绍 end */
+
+
+/*  剧照 start  */
+.scroll-block{
+	background-color: #f7f4f9;
+	padding: 20upx 40upx;
+	display: flex;
+	flex-direction: column;
+	 
+}
+.scroll-list{
+	width: 100%;
+	white-space: nowrap;
+	margin-top: 20upx;
+}
+.plot-image{
+	width: 220upx;
+	height: 320upx;
+	margin-right: 10upx;
+}
+
+/*  剧照 end */
