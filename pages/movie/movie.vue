@@ -190,6 +190,14 @@
 				}
 			});
 		},
+		//此函数仅仅只支持在小程序
+		onShareAppMessage(res) {
+			
+			return {
+				title: this.tailerInfo.name,
+				path: '/pages/movie/movie?trailerId=' + this.tailerInfo.id
+			};
+		},
 		components: {
 			trailerStars
 		}
