@@ -16,11 +16,33 @@
 		},
 		methods: {
 			operator(){
+				var me = this;
 				uni.showActionSheet({
-					itemList: ["下载图片","aaa","ccc"],
+					itemList: ["保存图片到本地","aaa"],
 					success: function(res){
 						if(res.tapIndex == 0){//下载
 							console.log("进入下载......")
+							uni.showLoading({
+								title:"图片保存中"
+							});
+							uni.downloadFile({
+								url: me.cover,
+								success:function(result){
+									var tempFilePath = result.tempFilePath;
+									uni.saveImageToPhotosAlbum({
+										filePath: tempFilePath,
+										success() {
+											uni.showToast({
+												title:"保存成功",
+												duration:2000, //200 ms
+											})
+										},
+										complete() {
+											uni.hideLoading();
+										}
+									})
+								}
+							})
 						}
 					}
 				})
