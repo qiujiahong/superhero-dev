@@ -48,6 +48,30 @@
 		</view>
 		<!-- 剧情介绍 end -->
 		
+		<!-- 演职人员 start -->
+		<view class="scroll-block">
+			<view class="plots-title">演职人员</view>
+			<scroll-view scroll-x class="scroll-list">
+				<view class="actor-wapper" v-for="director in directorArray">
+					<image 
+					 :src="director.photo" 
+					 class="single-actor"
+					 mode="aspectFill"></image>
+					 <view class="actor-name">{{director.name}}</view>
+					 <view class="actor-role">{{director.actName}}</view>
+				</view>
+				<view class="actor-wapper" v-for="actor in actorArray">
+					 <image 
+					  :src="actor.photo" 
+					  class="single-actor"
+					  mode="aspectFill"></image>
+					   <view class="actor-name">{{actor.name}}</view>
+					  <view class="actor-role">{{actor.actName}}</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!-- 演职人员 end -->
+		
 		<!-- 剧照 start -->
 		<view class="scroll-block">
 			<view class="plots-title">剧照</view>

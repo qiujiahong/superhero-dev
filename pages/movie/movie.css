@@ -108,3 +108,34 @@
 }
 
 /*  剧照 end */
+
+/* 演职人员 start */
+.actor-wapper{
+	display: inline-block;
+}
+.single-actor{
+	width: 170upx;
+	height: 240upx;
+	margin-right: 10upx;
+}
+.actor-name{
+	width: 170upx;
+	text-align: center;
+	font-size: 15px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.actor-role{
+	width: 170upx;
+	text-align: center;
+	font-size: 13px;
+	color: #a9a9a9;
+	
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	
+}
+
+/* 演职人员 end */
