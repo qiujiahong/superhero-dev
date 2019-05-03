@@ -13,11 +13,11 @@
 	<view class="movie-score-wapper">
 		<image  
 			v-for="yellow in yellowScore" 
-			src="../../static/icos/star-yellow.png" 
+			src="/static/icos/star-yellow.png" 
 			class="star-ico"></image>
 		<image  
 			v-for="gray in grayScore" 
-			src="../../static/icos/star-gray.png" 
+			src="/static/icos/star-gray.png" 
 			class="star-ico"></image>
 		<view class="move-score" v-if="showNum == 1">
 			{{innerScore}}
