@@ -25,7 +25,9 @@
 						<view class="movie-score">{{tailerInfo.score}}</view>
 					</view>
 					<view class="score-starts">
-						<trailerStars :innerScore="tailerInfo.score" showNum="0"></trailerStars>
+						<block v-if="tailerInfo.score >= 0">
+							<trailerStars :innerScore="tailerInfo.score" showNum="0"></trailerStars>
+						</block>
 						<view class="prise-counts">
 							{{tailerInfo.prisedCounts}} 人
 						</view>
