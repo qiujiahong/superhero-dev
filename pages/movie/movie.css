@@ -37,4 +37,37 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 /* 影片基本信息  end */
+
+/* 评分快 start */
+.score-block{
+	background-color: #ffffff;
+	margin-top: 20upx;
+	width: 360upx;
+	height: 90upx;
+	padding: 20upx;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	
+	/* 阴影效果 x轴  y轴 大小 颜色 */
+	box-shadow: 3px 2px 10px #dedede;
+}
+.score-words{
+	font-size: 12px;
+	color: gray;
+}
+.movie-score{
+	font-size: 26px;
+	font-weight: bold;
+	margin-left: 8upx;
+	color: #FEAB2A;
+	line-height: 60upx;
+}
+.prise-counts{
+	font-size: 12px;
+	color: gray;
+	line-height: 44upx;
+}
+/* 评分快 end */

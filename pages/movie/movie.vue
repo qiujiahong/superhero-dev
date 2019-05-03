@@ -20,7 +20,16 @@
 				<view class="basic-info">{{tailerInfo.totalTime}}</view>
 				<view class="basic-info">{{tailerInfo.releaseDate}}</view>
 				<view class="score-block">
-					
+					<view class="big-score">
+						<view class="score-words">综合评分:</view>
+						<view class="movie-score">{{tailerInfo.score}}</view>
+					</view>
+					<view class="score-starts">
+						<trailerStars :innerScore="tailerInfo.score" showNum="0"></trailerStars>
+						<view class="prise-counts">
+							{{tailerInfo.prisedCounts}} 人
+						</view>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -30,6 +39,7 @@
 
 <script>
 	import common from "../../common/common.js";
+	import trailerStars from "../../components/trailerStars.vue";
 	
 	export default {
 		data() {
@@ -56,6 +66,9 @@
 					}
 				}
 			});
+		},
+		components: {
+			trailerStars
 		}
 	}
 </script>
