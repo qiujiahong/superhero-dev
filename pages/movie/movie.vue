@@ -2,14 +2,10 @@
 	<view class="page">
 		<!-- 视频播放 start -->
 		<view class="player">
-			<video 
-				:src="tailerInfo.trailer" 
-				:poster="tailerInfo.poster"
-				class="movie"
-				controls></video>
+			<video :src="tailerInfo.trailer" :poster="tailerInfo.poster" class="movie" controls></video>
 		</view>
 		<!-- 视频播放 end -->
-		
+
 		<!-- 影片基本信息 start -->
 		<view class="movie-info">
 			<image :src="tailerInfo.cover" class="cover"></image>
@@ -36,49 +32,41 @@
 			</view>
 		</view>
 		<!-- 影片基本信息 end -->
-		
+
 		<view class="line-wapper">
 			<view class="line"></view>
 		</view>
-		
+
 		<!-- 剧情介绍 start -->
 		<view class="plots-block">
 			<view class="plots-title">剧情介绍</view>
 			<view class="plots-desc">{{tailerInfo.plotDesc}}</view>
 		</view>
 		<!-- 剧情介绍 end -->
-		
+
 		<!-- 演职人员 start -->
 		<view class="scroll-block">
 			<view class="plots-title">演职人员</view>
 			<scroll-view scroll-x class="scroll-list">
 				<view class="actor-wapper" v-for="director in directorArray">
-					<image 
-					 :src="director.photo" 
-					 class="single-actor"
-					 mode="aspectFill"></image>
-					 <view class="actor-name">{{director.name}}</view>
-					 <view class="actor-role">{{director.actName}}</view>
+					<image :src="director.photo" class="single-actor" mode="aspectFill"></image>
+					<view class="actor-name">{{director.name}}</view>
+					<view class="actor-role">{{director.actName}}</view>
 				</view>
 				<view class="actor-wapper" v-for="actor in actorArray">
-					 <image 
-					  :src="actor.photo" 
-					  class="single-actor"
-					  mode="aspectFill"></image>
-					   <view class="actor-name">{{actor.name}}</view>
-					  <view class="actor-role">{{actor.actName}}</view>
+					<image :src="actor.photo" class="single-actor" mode="aspectFill"></image>
+					<view class="actor-name">{{actor.name}}</view>
+					<view class="actor-role">{{actor.actName}}</view>
 				</view>
 			</scroll-view>
 		</view>
 		<!-- 演职人员 end -->
-		
+
 		<!-- 剧照 start -->
 		<view class="scroll-block">
 			<view class="plots-title">剧照</view>
 			<scroll-view scroll-x class="scroll-list">
-				<image v-for="img in plotPicsArray"
-				 :src="img" 
-				 class="plot-image"
+				<image v-for="(img,imgIndex) in plotPicsArray" :src="img" class="plot-image" :data-imgIndex="imgIndex" @click="lockMe" 
 				 mode="aspectFill"></image>
 			</scroll-view>
 		</view>
@@ -90,31 +78,46 @@
 <script>
 	import common from "../../common/common.js";
 	import trailerStars from "../../components/trailerStars.vue";
-	
+
 	export default {
 		data() {
 			return {
-				tailerInfo:{},
-				plotPicsArray:[], //剧照
+				tailerInfo: {},
+				plotPicsArray: [], //剧照
 				directorArray: [], // 导演列表 
-				actorArray:[],  // 演员列表
+				actorArray: [], // 演员列表
 			}
 		},
 		methods: {
-			
+			lockMe(e) {
+				var imgIndex = e.currentTarget.dataset.imgindex;
+				console.log(imgIndex)
+				// debugger
+				uni.previewImage({
+					current: this.plotPicsArray[imgIndex],
+					urls: this.plotPicsArray
+				})
+			}
 		},
 		onLoad(params) {
 			//获取上一个页面传入的参数
 			var trailerId = params.trailerId;
+
+			// 通过api设置导航栏属性
+			uni.setNavigationBarColor({
+				frontColor: "#ffffff",
+				backgroundColor: "#000000"
+			})
+
 			//获取预告片的详细信息
 			//查询猜你喜欢
-			var serverUrl = common.serverUrl+ "/search/trailer/"+trailerId +"?qq="+common.qqStr;
+			var serverUrl = common.serverUrl + "/search/trailer/" + trailerId + "?qq=" + common.qqStr;
 			uni.request({
-				url: serverUrl ,
+				url: serverUrl,
 				method: "POST",
 				success: (res) => {
-					if(res.data.status == 200){
-						var tailerInfo= res.data.data;
+					if (res.data.status == 200) {
+						var tailerInfo = res.data.data;
 						this.tailerInfo = tailerInfo;
 						// 把剧照的字符串转换成为json array
 						this.plotPicsArray = JSON.parse(tailerInfo.plotPics);
@@ -123,31 +126,31 @@
 					}
 				}
 			});
-			
+
 			// 获取导演
-			var serverUrl = common.serverUrl+ "/search/staff/"+trailerId +"/1?qq="+common.qqStr;
+			var serverUrl = common.serverUrl + "/search/staff/" + trailerId + "/1?qq=" + common.qqStr;
 			uni.request({
-				url: serverUrl ,
+				url: serverUrl,
 				method: "POST",
 				success: (res) => {
-					if(res.data.status == 200){
+					if (res.data.status == 200) {
 						// var directorArray= res.data.data;
 						// this.directorArray= directorArray;
-						this.directorArray=  res.data.data;
+						this.directorArray = res.data.data;
 						console.log(this.directorArray)
 						// debugger
 					}
 				}
 			});
-			
+
 			// 获取演员
-			var serverUrl = common.serverUrl+ "/search/staff/"+trailerId +"/2?qq="+common.qqStr;
+			var serverUrl = common.serverUrl + "/search/staff/" + trailerId + "/2?qq=" + common.qqStr;
 			uni.request({
-				url: serverUrl ,
+				url: serverUrl,
 				method: "POST",
 				success: (res) => {
-					if(res.data.status == 200){
-						this.actorArray= res.data.data;
+					if (res.data.status == 200) {
+						this.actorArray = res.data.data;
 						console.log(this.actorArray)
 						// debugger
 					}
@@ -161,5 +164,5 @@
 </script>
 
 <style>
-@import url("movie.css");
+	@import url("movie.css");
 </style>
