@@ -8,7 +8,9 @@
 
 		<!-- 影片基本信息 start -->
 		<view class="movie-info">
-			<image :src="tailerInfo.cover" class="cover"></image>
+			<navigator :url="'../cover/cover?cover='+ tailerInfo.cover">
+				<image :src="tailerInfo.cover" class="cover"></image>
+			</navigator>
 			<view class="movie-desc">
 				<view class="title">{{tailerInfo.name}}</view>
 				<view class="basic-info">{{tailerInfo.basicInfo}}</view>
