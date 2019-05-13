@@ -176,14 +176,20 @@
 			var serverUrl = common.serverUrl+ "/index/carousel/list?"+ common.qqStr;
 			//var me = this;
 			//请求轮播图数据
+			console.log("开始请求轮播图")
 			uni.request({
 				url: serverUrl ,//'https://www.imovietrailer.com/superhero/index/carousel/list?qq=309284701', //仅为示例，并非真实接口地址。
 				method: "POST",
 				success: (res) => {
+					console.log("请求轮播图成功")
+					console.log(res)
 					if(res.data.status == 200){
 						this.carouselList= res.data.data;
 						console.log(this.carouselList);
 					}
+				},
+				complete:() => {
+					console.log("开始请求轮播图complete回调")
 				}
 			});
 			

@@ -135,16 +135,17 @@
 		onLoad(params) {
 			//获取上一个页面传入的参数
 			var trailerId = params.trailerId;
+			
 
 			// 通过api设置导航栏属性
 			uni.setNavigationBarColor({
 				frontColor: "#ffffff",
 				backgroundColor: "#000000"
 			})
-
+			
 			//获取预告片的详细信息
 			//查询猜你喜欢
-			var serverUrl = common.serverUrl + "/search/trailer/" + trailerId + "?qq=" + common.qqStr;
+			var serverUrl = common.serverUrl + "/search/trailer/" + trailerId + "?" + common.qqStr;
 			uni.request({
 				url: serverUrl,
 				method: "POST",
@@ -155,13 +156,12 @@
 						// 把剧照的字符串转换成为json array
 						this.plotPicsArray = JSON.parse(tailerInfo.plotPics);
 						console.log(this.plotPicsArray)
-						// debugger
 					}
 				}
 			});
 
 			// 获取导演
-			var serverUrl = common.serverUrl + "/search/staff/" + trailerId + "/1?qq=" + common.qqStr;
+			var serverUrl = common.serverUrl + "/search/staff/" + trailerId + "/1?" + common.qqStr;
 			uni.request({
 				url: serverUrl,
 				method: "POST",
@@ -177,7 +177,7 @@
 			});
 
 			// 获取演员
-			var serverUrl = common.serverUrl + "/search/staff/" + trailerId + "/2?qq=" + common.qqStr;
+			var serverUrl = common.serverUrl + "/search/staff/" + trailerId + "/2?" + common.qqStr;
 			uni.request({
 				url: serverUrl,
 				method: "POST",
@@ -192,7 +192,6 @@
 		},
 		//此函数仅仅只支持在小程序
 		onShareAppMessage(res) {
-			
 			return {
 				title: this.tailerInfo.name,
 				path: '/pages/movie/movie?trailerId=' + this.tailerInfo.id
