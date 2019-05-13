@@ -200,10 +200,31 @@
 		//监听导航栏的按钮
 		onNavigationBarButtonTap(e){
 			var index = e.index;
-			// console.log(index)
+			
+			var  tailerInfo = this.tailerInfo;
+			var trailerId = tailerInfo.id;
+			var trailerName = tailerInfo.name;
+			var cover = tailerInfo.cover;
+			var poster = tailerInfo.poster;
+			
+			
 			// 如果index 为0 则分享
 			if (index == 0){
-				
+				uni.share({
+					provider: "weixin",
+					scene: "WXSenceTimeline",
+					type: 0,
+					href: "http://192.168.65.113:8080/#/pages/movie/movie?trailerId="+trailerId,
+					title: "超级英雄:《"+ trailerName +"》",
+					summary: "超级英雄:《"+ trailerName +"》",
+					imageUrl: cover,
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+				});
 			}
 		},
 		components: {
