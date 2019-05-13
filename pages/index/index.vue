@@ -61,6 +61,9 @@
 		
 		<view class="hot-movies page-block">
 			<video 
+				:id="trailer.id"
+				:data-playingIndex="trailer.id"
+				@play="meIsPlayIng"
 				v-for="trailer in hotTrailerList"
 				:src="trailer.trailer" 
 				:poster="trailer.poster"
@@ -167,6 +170,11 @@
 		onPullDownRefresh() {
 			this.refresh();
 		},
+		onHide() {
+			if( this.videoContex ){
+				this.videoContex.pause();
+			}
+		},
 		onLoad() {
 			// #ifdef APP-PLUS || MP-WEIXIN
 			//在页面创建的时候创建一个临时动画对象
@@ -223,6 +231,22 @@
 			
 		},
 		methods: {
+			//播放一个视频的时候，需要暂停其他正在播放的视频
+			meIsPlayIng(e){
+				var trailerId =  "";
+				if(e){
+					trailerId = e.currentTarget.dataset.playingindex
+					this.videoContex = uni.createVideoContext(trailerId);
+				}
+				var hotTrailerList  = this.hotTrailerList;
+				
+				for(var i =0; i< hotTrailerList.length; i++) {
+					var temp = hotTrailerList[i].id;
+					if(temp != trailerId){//其他视频暂停
+						uni.createVideoContext(temp).pause();
+					}
+				}
+			},
 			refresh(){
 				//查询猜你喜欢
 				uni.showLoading({

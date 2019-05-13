@@ -110,7 +110,6 @@
 			this.videoContext.pause();
 		},
 		onShow() {
-			debugger
 			if(this.videoContext){
 				this.videoContext.play();
 			}
