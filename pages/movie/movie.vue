@@ -2,32 +2,34 @@
 	<view class="page">
 		<!-- 视频播放 start -->
 		<view class="player">
-			<video :src="tailerInfo.trailer" :poster="tailerInfo.poster" class="movie" controls></video>
+			<video 
+				id="myTrailer"
+				:src="trailerInfo.trailer" :poster="trailerInfo.poster" class="movie" controls></video>
 		</view>
 		<!-- 视频播放 end -->
 
 		<!-- 影片基本信息 start -->
 		<view class="movie-info">
-			<navigator :url="'../cover/cover?cover='+ tailerInfo.cover">
-				<image :src="tailerInfo.cover" class="cover"></image>
+			<navigator :url="'../cover/cover?cover='+ trailerInfo.cover">
+				<image :src="trailerInfo.cover" class="cover"></image>
 			</navigator>
 			<view class="movie-desc">
-				<view class="title">{{tailerInfo.name}}</view>
-				<view class="basic-info">{{tailerInfo.basicInfo}}</view>
-				<view class="basic-info">{{tailerInfo.originalName}}</view>
-				<view class="basic-info">{{tailerInfo.totalTime}}</view>
-				<view class="basic-info">{{tailerInfo.releaseDate}}</view>
+				<view class="title">{{trailerInfo.name}}</view>
+				<view class="basic-info">{{trailerInfo.basicInfo}}</view>
+				<view class="basic-info">{{trailerInfo.originalName}}</view>
+				<view class="basic-info">{{trailerInfo.totalTime}}</view>
+				<view class="basic-info">{{trailerInfo.releaseDate}}</view>
 				<view class="score-block">
 					<view class="big-score">
 						<view class="score-words">综合评分:</view>
-						<view class="movie-score">{{tailerInfo.score}}</view>
+						<view class="movie-score">{{trailerInfo.score}}</view>
 					</view>
 					<view class="score-starts">
-						<block v-if="tailerInfo.score >= 0">
-							<trailerStars :innerScore="tailerInfo.score" showNum="0"></trailerStars>
+						<block v-if="trailerInfo.score >= 0">
+							<trailerStars :innerScore="trailerInfo.score" showNum="0"></trailerStars>
 						</block>
 						<view class="prise-counts">
-							{{tailerInfo.prisedCounts}} 人
+							{{trailerInfo.prisedCounts}} 人
 						</view>
 					</view>
 				</view>
@@ -42,7 +44,7 @@
 		<!-- 剧情介绍 start -->
 		<view class="plots-block">
 			<view class="plots-title">剧情介绍</view>
-			<view class="plots-desc">{{tailerInfo.plotDesc}}</view>
+			<view class="plots-desc">{{trailerInfo.plotDesc}}</view>
 		</view>
 		<!-- 剧情介绍 end -->
 
@@ -94,10 +96,23 @@
 	export default {
 		data() {
 			return {
-				tailerInfo: {},
+				trailerInfo: {},
 				plotPicsArray: [], //剧照
 				directorArray: [], // 导演列表 
 				actorArray: [], // 演员列表
+			}
+		},
+		//页面初次渲染完成，获得视频上下文对象
+		onReady() {
+			this.videoContext = uni.createVideoContext('myTrailer');
+		},
+		onHide() {
+			this.videoContext.pause();
+		},
+		onShow() {
+			debugger
+			if(this.videoContext){
+				this.videoContext.play();
 			}
 		},
 		methods: {
@@ -151,10 +166,10 @@
 				method: "POST",
 				success: (res) => {
 					if (res.data.status == 200) {
-						var tailerInfo = res.data.data;
-						this.tailerInfo = tailerInfo;
+						var trailerInfo = res.data.data;
+						this.trailerInfo = trailerInfo;
 						// 把剧照的字符串转换成为json array
-						this.plotPicsArray = JSON.parse(tailerInfo.plotPics);
+						this.plotPicsArray = JSON.parse(trailerInfo.plotPics);
 						console.log(this.plotPicsArray)
 					}
 				}
@@ -193,19 +208,19 @@
 		//此函数仅仅只支持在小程序
 		onShareAppMessage(res) {
 			return {
-				title: this.tailerInfo.name,
-				path: '/pages/movie/movie?trailerId=' + this.tailerInfo.id
+				title: this.trailerInfo.name,
+				path: '/pages/movie/movie?trailerId=' + this.trailerInfo.id
 			};
 		},
 		//监听导航栏的按钮
 		onNavigationBarButtonTap(e){
 			var index = e.index;
 			
-			var  tailerInfo = this.tailerInfo;
-			var trailerId = tailerInfo.id;
-			var trailerName = tailerInfo.name;
-			var cover = tailerInfo.cover;
-			var poster = tailerInfo.poster;
+			var  trailerInfo = this.trailerInfo;
+			var trailerId = trailerInfo.id;
+			var trailerName = trailerInfo.name;
+			var cover = trailerInfo.cover;
+			var poster = trailerInfo.poster;
 			
 			
 			// 如果index 为0 则分享
