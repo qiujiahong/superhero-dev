@@ -197,6 +197,15 @@
 				path: '/pages/movie/movie?trailerId=' + this.tailerInfo.id
 			};
 		},
+		//监听导航栏的按钮
+		onNavigationBarButtonTap(e){
+			var index = e.index;
+			// console.log(index)
+			// 如果index 为0 则分享
+			if (index == 0){
+				
+			}
+		},
 		components: {
 			trailerStars
 		}
