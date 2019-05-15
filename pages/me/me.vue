@@ -1,5 +1,8 @@
 <template>
-	<view class="page">
+	<view class="page page-fill">
+		<view class="header">
+			
+		</view>
 		
 	</view>
 </template>
