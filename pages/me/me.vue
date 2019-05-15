@@ -17,9 +17,11 @@
 				</view>
 			</view>
 			<view  v-else>
-				<view class="nickname regist-login" >
-					注册/登录
-				</view>
+				<navigator url="../registLogin/registLogin">
+					<view class="nickname regist-login" >
+						注册/登录
+					</view>
+				</navigator>
 			</view>
 			
 			<view class="set-wapper"  v-if="userIsLogin">
@@ -34,7 +36,7 @@
 	export default {
 		data() {
 			return {
-				userIsLogin: true
+				userIsLogin: false
 			}
 		},
 		methods: {
