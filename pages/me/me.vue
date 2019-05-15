@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		这是我的页面
+		
 	</view>
 </template>
 
@@ -18,5 +18,5 @@
 </script>
 
 <style>
-
+	@import url("me.css");
 </style>
