@@ -38,12 +38,18 @@
 		}, {
 			"path": "pages/cover/cover",
 			"style": {}
+		}, {
+			"path": "pages/registLogin/registLogin",
+			"style": {}
+		}, {
+			"path": "pages/meInfo/meInfo",
+			"style": {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#ffd655"
+			}
 		}
-	    ,{
-            "path" : "pages/registLogin/registLogin",
-            "style" : {}
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "超级英雄预告",
