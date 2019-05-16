@@ -45,7 +45,13 @@
 					success: (res) => {
 						if (res.data.status == 200) {
 							var userInfo = res.data.data;
-							console.log(userInfo)
+							// console.log(userInfo)
+							// 保存用户信息到全局的缓冲中
+							uni.setStorageSync("globalUser",userInfo);
+							//切换页面跳转
+							uni.switchTab({
+								url:"../me/me"
+							});
 						}
 					}
 				});

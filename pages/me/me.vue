@@ -2,7 +2,7 @@
 	<view class="page page-fill">
 		<view class="header">
 			<view v-if="userIsLogin">
-				<image src="../../static/icos/108x108.png" class="face"></image>
+				<image :src="userInfo.faceImage" class="face"></image>
 			</view>
 			<view v-else>
 				<image src="http://122.152.205.72:88/group1/M00/00/05/CpoxxFw_-5-AFyVyAABLIH8xBTw233.png" class="face"></image>
@@ -10,10 +10,10 @@
 			
 			<view class="info-wapper"  v-if="userIsLogin">
 				<view class="nickname">
-					张三
+					{{userInfo.nickname}}
 				</view>
 				<view class="nav-info">
-					ID:1233445555
+					ID:{{userInfo.id}}
 				</view>
 			</view>
 			<view  v-else>
@@ -36,11 +36,24 @@
 	export default {
 		data() {
 			return {
-				userIsLogin: false
+				userIsLogin: false,
+				userInfo: {}
 			}
 		},
 		methods: {
 
+		},
+		onShow() {
+			
+			var userInfo =   uni.getStorageSync("globalUser")
+			if(userInfo != null && userInfo != undefined && userInfo != ""){
+				this.userIsLogin = true;
+				this.userInfo = userInfo;
+				console.log(this.userInfo)
+			}else{
+				this.userIsLogin = false;
+				this.userInfo = {};
+			}
 		}
 	}
 </script>
