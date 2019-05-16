@@ -1,6 +1,6 @@
 <template>
 	<view class="body">
-		<!-- <form @submit="formSubmit"> -->
+		<form @submit="formSubmit">
 			<view class="face-wapper">
 				<image src="../../static/icos/default-face.png" class="face"></image>
 			</view>
@@ -16,11 +16,13 @@
 			</view>
 			
 			<button type="primary" form-type="submit" style="margin-top: 60upx;width: 90%;">注册/登录</button>
-		<!-- </form> -->
+		</form>
 	</view>
 </template>
 
 <script>
+	import common from "../../common/common.js";
+	
 	export default {
 		data() {
 			return {
@@ -28,7 +30,26 @@
 			}
 		},
 		methods: {
-			
+			formSubmit(e){
+				var username = e.detail.value.username;
+				var password = e.detail.value.password;
+				//发起注册或者登陆的请求
+				var serverUrl = common.serverUrl + "/user/registOrLogin?" + common.qqStr;
+				uni.request({
+					url: serverUrl,
+					data:{
+						username: username,
+						password: password
+					},
+					method: "POST",
+					success: (res) => {
+						if (res.data.status == 200) {
+							var userInfo = res.data.data;
+							console.log(userInfo)
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
