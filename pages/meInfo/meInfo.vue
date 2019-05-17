@@ -81,7 +81,7 @@
 			<view class="footer-words" @click="cleanStorage">
 				清理缓存
 			</view>
-			<view class="footer-words" style="margin-top: 10upx;">
+			<view class="footer-words" style="margin-top: 10upx;" @click="logout">
 				退出登录
 			</view>
 		</view>
@@ -89,6 +89,8 @@
 </template>
 
 <script>
+	import common from "../../common/common.js";
+	
 	export default {
 		data() {
 			return {
@@ -107,6 +109,24 @@
 					mask:false,
 					duration: 1500
 				})
+			},
+			logout(){
+				
+				var globalUser = this.getGlobalUser("globalUser");
+				var serverUrl = common.serverUrl + "/user/logout?" + common.qqStr+"&userId=" + globalUser.id;
+				
+				uni.request({
+					url: serverUrl,
+					method: "POST",
+					success: (res) => {
+						if (res.data.status == 200) {
+							uni.removeStorageSync("globalUser");
+							uni.switchTab({
+								url: "../me/me"
+							})
+						}
+					}
+				});
 			}
 		}
 	}
