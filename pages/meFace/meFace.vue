@@ -49,7 +49,44 @@
 				})
 			},
 			upload(){
-				
+				var me = this;
+				var globalUser = this.getGlobalUser("globalUser");
+				var url = me.serverUrl + "/user/uploadFace?userId="+globalUser.id+"&"+me.qqStr;
+				uni.showLoading({
+					mask:true,
+					title: "上传中，请稍后"
+				})
+				uni.uploadFile({
+					url: url,
+					filePath: me.tempFace,
+					name: "file",
+					header:{
+						"headerUserId": globalUser.id,
+						"headerUserToken": globalUser.userUniqueToken
+					},
+					success(res) {
+						var resDataStr = res.data;
+						console.log(resData);
+						var resData = JSON.parse(resDataStr);
+						if(resData.status == 200){
+							//获得最新的用户数据
+							var userInfo = resData.data;;
+							uni.setStorageSync("globalUser",userInfo)
+							uni.navigateBack({
+								delta:1 //返回上一个页面
+							});
+						}else if(resData.status == 500||resData.status == 502){
+							uni.showToast({
+								title: res.data.msg,
+								image: "../../static/icos/error.png",
+								duration: 2000
+							})
+						}
+					},
+					complete() {
+						uni.hideLoading();
+					}
+				})
 			}
 		}
 	}
