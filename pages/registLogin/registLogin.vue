@@ -17,6 +17,41 @@
 			
 			<button type="primary" form-type="submit" style="margin-top: 60upx;width: 90%;">注册/登录</button>
 		</form>
+		
+		
+		<!-- 第三方登录h5不支持 -->
+		<!-- #ifndef H5 -->
+		<view class="third-wapper">
+			
+			<view class="third-line">
+				<view class="single-line">
+					<view class="line"></view>
+				</view>
+				
+				<view class="third-words">第三方账号登录</view>
+				
+				<view class="single-line">
+					<view class="line"></view>
+				</view>
+			</view>
+			
+			<view class="third-icos-wapper">
+				<!-- 5+app 用QQ登录  小程序用用微信小程序登录  H5不支持 -->
+				<!-- #ifdef APP-PLUS -->
+					<image src="../../static/icos/weixin.png" class="third-ico"  ></image>
+					<image src="../../static/icos/QQ.png" class="third-ico"  style="margin-left: 80upx;"></image>
+					<image src="../../static/icos/weibo.png" class="third-ico"  style="margin-left: 80upx;"></image>
+				<!-- #endif -->
+				<!-- #ifdef MP-WEIXIN -->
+					<button open-type="getUserInfo" @getuserinfo="wxLogin" class="third-btn-ico">
+					</button>
+				<!-- #endif -->
+			</view>
+			
+		</view>
+		<!-- #endif -->
+		
+		
 	</view>
 </template>
 
@@ -30,6 +65,42 @@
 			}
 		},
 		methods: {
+			// 实现在微信小程序端的微信登录
+			wxLogin(e){
+				var me = this;
+				console.log(me)
+				// console.log(e)
+				// 通过微信开放能力获得用户的基本信息
+				var userInfo = e.detail.userInfo;				
+				var serverUrl = this.serverUrl + "/mpWXLogin/";
+				var qqStr =  this.qqStr;
+				// 实现微信登录
+				uni.login({
+					provider:"weixin",
+					success(loginResult) {
+						// console.log(loginResult)
+						// 获得微信登录的code：授权码
+						var code = loginResult.code;
+						var loginToWhichMP =  1;	//超英预告
+						serverUrl = serverUrl + code + "?"+ qqStr;
+						uni.request({
+							url: serverUrl,
+							data:{
+								"avatarUrl": userInfo.avatarUrl,
+								"nickName": userInfo.nickName,
+								"whichMP": loginToWhichMP
+							},
+							method:"POST",
+							success(userResult) {
+								console.log(userResult);
+							},
+							complete() {
+								console.log("complete");
+							}
+						})
+					}
+				})
+			},
 			formSubmit(e){
 				var username = e.detail.value.username;
 				var password = e.detail.value.password;

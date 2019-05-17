@@ -3,6 +3,9 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+Vue.prototype.serverUrl = "https://www.imovietrailer.com/superhero";
+Vue.prototype.qqStr="qq=309284701";
+
 Vue.prototype.getGlobalUser = function(key) {
 	var userInfo = uni.getStorageSync("globalUser")
 	if (userInfo != null && userInfo != undefined && userInfo != "") {
@@ -11,6 +14,7 @@ Vue.prototype.getGlobalUser = function(key) {
 		return null;
 	}
 }
+
 
 App.mpType = 'app'
 
