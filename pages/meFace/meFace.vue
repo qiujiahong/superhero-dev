@@ -66,7 +66,6 @@
 					},
 					success(res) {
 						var resDataStr = res.data;
-						console.log(resData);
 						var resData = JSON.parse(resDataStr);
 						if(resData.status == 200){
 							//获得最新的用户数据

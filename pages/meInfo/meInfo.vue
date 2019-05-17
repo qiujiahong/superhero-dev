@@ -22,7 +22,7 @@
 			<view class="item-wapper face-line-upbottom">
 				<view class="info-words">昵称</view>
 				
-				<view class="right-wapper">
+				<view class="right-wapper" @click="modifyNickname">
 					<view class="gray-fields">
 						{{globalUser.nickname}}
 					</view>
@@ -102,6 +102,11 @@
 			this.globalUser = globalUser;
 		},
 		methods: {
+			modifyNickname(){
+				uni.navigateTo({
+					url: "../meNickName/meNickName"
+				})
+			},
 			operator(){
 				var globalUser = this.getGlobalUser("globalUser");
 				uni.showActionSheet({
