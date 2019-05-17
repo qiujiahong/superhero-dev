@@ -117,6 +117,18 @@
 								current: faceArray[0]
 							})
 						}else if(index == 1){//上传
+							uni.chooseImage({
+								count: 1,
+								sizeType: ["compressed"],
+								sourceType: ["album"],
+								success(res) {
+									//获得临时路径
+									var tempFilePath = 	res.tempFilePaths[0];
+									uni.navigateTo({
+										url: "../meFace/meFace?tempFilePath="+tempFilePath
+									})
+								}
+							})
 							
 						}
 					}
@@ -131,7 +143,6 @@
 				})
 			},
 			logout(){
-				
 				var globalUser = this.getGlobalUser("globalUser");
 				var serverUrl = common.serverUrl + "/user/logout?" + common.qqStr+"&userId=" + globalUser.id;
 				
