@@ -64,6 +64,14 @@
 				"navigationBarBackgroundColor": "#ffd655"
 			}
         }
+        ,{
+            "path" : "pages/meBirthday/meBirthday",
+            "style" : {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "修改生日",
+				"navigationBarBackgroundColor": "#ffd655"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

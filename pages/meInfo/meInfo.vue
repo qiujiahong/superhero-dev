@@ -40,7 +40,7 @@
 			<view class="item-wapper face-line-upbottom">
 				<view class="info-words">生日</view>
 				
-				<view class="right-wapper">
+				<view class="right-wapper" @click="modifyBirthday">
 					<view class="gray-fields">
 						{{globalUser.birthday}}
 					</view>
@@ -102,6 +102,11 @@
 			this.globalUser = globalUser;
 		},
 		methods: {
+			modifyBirthday(){
+				uni.navigateTo({
+					url: "../meBirthday/meBirthday"
+				})
+			},
 			modifyNickname(){
 				uni.navigateTo({
 					url: "../meNickName/meNickName"
