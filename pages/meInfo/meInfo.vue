@@ -3,12 +3,11 @@
 		
 		<view class="page-block info-list">
 			<!-- 头像 -->
-			
 			<view class="item-wapper face-line-upbottom">
 				<view class="info-words">头像</view>
 				
 				<view class="right-wapper">
-					<image src="../../static/icos/default-face.png" class="face"></image>
+					<image :src="globalUser.faceImage" class="face"></image>
 					<view class="arrow-block">
 						<image src="../../static/icos/left-gray-arrow.png" class="arrow-icon"></image>
 					</view>
@@ -25,7 +24,7 @@
 				
 				<view class="right-wapper">
 					<view class="gray-fields">
-						nick
+						{{globalUser.nickname}}
 					</view>
 					<view class="arrow-block">
 						<image src="../../static/icos/left-gray-arrow.png" class="arrow-icon"></image>
@@ -43,7 +42,7 @@
 				
 				<view class="right-wapper">
 					<view class="gray-fields">
-						1986-02-09
+						{{globalUser.birthday}}
 					</view>
 					<view class="arrow-block">
 						<image src="../../static/icos/left-gray-arrow.png" class="arrow-icon"></image>
@@ -61,7 +60,15 @@
 				
 				<view class="right-wapper">
 					<view class="gray-fields">
-						男
+						<view v-if="globalUser.sex == 1">
+							男
+						</view>
+						<view v-else-if="globalUser.sex == 0">
+							女
+						</view>
+						<view v-else>
+							未知
+						</view>
 					</view>
 					<view class="arrow-block">
 						<image src="../../static/icos/left-gray-arrow.png" class="arrow-icon"></image>
@@ -85,8 +92,12 @@
 	export default {
 		data() {
 			return {
-				
+				globalUser: {}
 			}
+		},
+		onShow() {
+			var globalUser = this.getGlobalUser("globalUser");
+			this.globalUser = globalUser;
 		},
 		methods: {
 			cleanStorage(){

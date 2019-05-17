@@ -45,8 +45,19 @@
 		},
 		onShow() {
 			
-			var userInfo =   uni.getStorageSync("globalUser")
-			if(userInfo != null && userInfo != undefined && userInfo != ""){
+			// var userInfo =   uni.getStorageSync("globalUser")
+			// if(userInfo != null && userInfo != undefined && userInfo != ""){
+			// 	this.userIsLogin = true;
+			// 	this.userInfo = userInfo;
+			// 	console.log(this.userInfo)
+			// }else{
+			// 	this.userIsLogin = false;
+			// 	this.userInfo = {};
+			// }
+			
+			// 使用挂载方法获取
+			var userInfo = this.getGlobalUser("globalUser");
+			if(userInfo != null ){
 				this.userIsLogin = true;
 				this.userInfo = userInfo;
 				console.log(this.userInfo)
