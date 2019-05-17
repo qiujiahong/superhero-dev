@@ -2,10 +2,12 @@
 	<view class="page page-fill">
 		<view class="header">
 			<view v-if="userIsLogin">
-				<image :src="userInfo.faceImage" class="face"></image>
+				<navigator url="../meInfo/meInfo">
+				<image :src="userInfo.faceImage" class="face" ></image>
+				</navigator>
 			</view>
 			<view v-else>
-				<image src="http://122.152.205.72:88/group1/M00/00/05/CpoxxFw_-5-AFyVyAABLIH8xBTw233.png" class="face"></image>
+					<image src="http://122.152.205.72:88/group1/M00/00/05/CpoxxFw_-5-AFyVyAABLIH8xBTw233.png" class="face"></image>
 			</view>
 			
 			<view class="info-wapper"  v-if="userIsLogin">
