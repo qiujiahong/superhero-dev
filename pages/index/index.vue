@@ -5,14 +5,14 @@
 		<!-- <trailerStars innerScore="9" showNum="1"></trailerStars> -->
 		<!-- 轮播图 start -->
 		<swiper :indicator-dots="true" :autoplay="true" class="carousel">
-			<swiper-item v-for="carousel in  carouselList" >
-				<navigator open-type="navigate" :url="'../movie/movie?trailerId='+carousel.movieId">					
+			<swiper-item v-for="carousel in  carouselList">
+				<navigator open-type="navigate" :url="'../movie/movie?trailerId='+carousel.movieId">
 					<image :src="carousel.image" class="carousel"></image>
 				</navigator>
 			</swiper-item>
 		</swiper>
 		<!-- 轮播图 end -->
-		
+
 		<!-- 热门超英 start -->
 		<view class="page-block super-hot">
 			<view class="hot-title-wapper">
@@ -22,12 +22,12 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<scroll-view scroll-x="true" class="page-block hot">
-			
+
 			<view class="single-poster" v-for="superHero in hotSuperheroList">
 				<view class="poster-wapper">
-					<navigator open-type="navigate" :url="'../movie/movie?trailerId='+superHero.id">	
+					<navigator open-type="navigate" :url="'../movie/movie?trailerId='+superHero.id">
 						<image :src="superHero.cover" class="poster"></image>
 					</navigator>
 					<view class="movie-name">
@@ -48,7 +48,7 @@
 			</view>
 		</scroll-view>
 		<!-- 热门超英 end-->
-		
+
 		<!-- 热门预告 start  -->
 		<view class="page-block super-hot">
 			<view class="hot-title-wapper">
@@ -58,21 +58,14 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="hot-movies page-block">
-			<video 
-				:id="trailer.id"
-				:data-playingIndex="trailer.id"
-				@play="meIsPlayIng"
-				v-for="trailer in hotTrailerList"
-				:src="trailer.trailer" 
-				:poster="trailer.poster"
-				class="hot-movie-single"
-				controls></video>
+			<video :id="trailer.id" :data-playingIndex="trailer.id" @play="meIsPlayIng" v-for="trailer in hotTrailerList" :src="trailer.trailer"
+			 :poster="trailer.poster" class="hot-movie-single" controls></video>
 		</view>
 		<!-- 热门预告 end  -->
-		
-		
+
+
 		<!-- 猜你喜欢 start  -->
 		<view class="page-block super-hot">
 			<view class="hot-title-wapper">
@@ -82,11 +75,11 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="page-block guess-u-like">
-			
+
 			<view class="sigle-like-movie" v-for="(guess,gIndex) in guessULikeList">
-				<navigator open-type="navigate" :url="'../movie/movie?trailerId='+guess.id">	
+				<navigator open-type="navigate" :url="'../movie/movie?trailerId='+guess.id">
 					<image :src="guess.cover" class="like-movie"></image>
 				</navigator>
 				<view class="movie-desc">
@@ -145,7 +138,7 @@
 	// 导入自定义组件
 	import helloComp from "../../components/helloComp.vue";
 	import trailerStars from "../../components/trailerStars.vue";
-	
+
 	export default {
 		data() {
 			return {
@@ -153,118 +146,139 @@
 				hotSuperheroList: [],
 				hotTrailerList: [],
 				guessULikeList: [],
-				animationData:{
-				},
-				animationDataArr:[
-					{},{},{},{},{},
-				]
+				animationData: {},
+				animationDataArr: [{}, {}, {}, {}, {}, ]
 			}
 		},
 		onUnload() {
 			//页面卸载的时候，清除动画数据
-			this.animationData={};
-			this.animationDataArr = [
-					{},{},{},{},{},
-				]
+			this.animationData = {};
+			this.animationDataArr = [{}, {}, {}, {}, {}, ]
 		},
 		onPullDownRefresh() {
 			this.refresh();
 		},
 		onHide() {
-			if( this.videoContex ){
+			if (this.videoContex) {
 				this.videoContex.pause();
 			}
 		},
 		onLoad() {
+
+			uni.login({
+				provider: "weixin",
+				success(loginResult) {
+					// console.log(loginResult)
+					// 获得微信登录的code：授权码
+					var code = loginResult.code;
+					wx.getWeRunData({
+						success(res) {
+							console.log(res);
+							debugger;
+						},
+						fail(res) {
+							console.log(res);
+							debugger;
+						},
+						complete() {
+							console.log("complete");
+						}
+					})
+				}
+			})
+
+			////////////
+
+
 			// #ifdef APP-PLUS || MP-WEIXIN
 			//在页面创建的时候创建一个临时动画对象
 			this.animation = uni.createAnimation();
 			// #endif
-			
-			var serverUrl = common.serverUrl+ "/index/carousel/list?"+ common.qqStr;
+
+			var serverUrl = common.serverUrl + "/index/carousel/list?" + common.qqStr;
 			//var me = this;
 			//请求轮播图数据
 			console.log("开始请求轮播图")
 			uni.request({
-				url: serverUrl ,//'https://www.imovietrailer.com/superhero/index/carousel/list?qq=309284701', //仅为示例，并非真实接口地址。
+				url: serverUrl, //'https://www.imovietrailer.com/superhero/index/carousel/list?qq=309284701', //仅为示例，并非真实接口地址。
 				method: "POST",
 				success: (res) => {
 					console.log("请求轮播图成功")
 					console.log(res)
-					if(res.data.status == 200){
-						this.carouselList= res.data.data;
+					if (res.data.status == 200) {
+						this.carouselList = res.data.data;
 						console.log(this.carouselList);
 					}
 				},
-				complete:() => {
+				complete: () => {
 					console.log("开始请求轮播图complete回调")
 				}
 			});
-			
+
 			//查询热门超英
-			serverUrl = common.serverUrl+ "/index/movie/hot?"+ common.qqStr+"&type=superhero";
+			serverUrl = common.serverUrl + "/index/movie/hot?" + common.qqStr + "&type=superhero";
 			uni.request({
-				url: serverUrl ,
+				url: serverUrl,
 				method: "POST",
 				success: (res) => {
-					if(res.data.status == 200){
-						this.hotSuperheroList= res.data.data;
+					if (res.data.status == 200) {
+						this.hotSuperheroList = res.data.data;
 						console.log(this.hotSuperheroList);
 					}
 				}
 			});
-			
-			
+
+
 			//查询热门预告
-			serverUrl = common.serverUrl+ "/index/movie/hot?"+ common.qqStr+"&type=trailer";
+			serverUrl = common.serverUrl + "/index/movie/hot?" + common.qqStr + "&type=trailer";
 			uni.request({
-				url: serverUrl ,
+				url: serverUrl,
 				method: "POST",
 				success: (res) => {
-					if(res.data.status == 200){
-						this.hotTrailerList= res.data.data;
+					if (res.data.status == 200) {
+						this.hotTrailerList = res.data.data;
 						console.log(this.hotTrailerList);
 					}
 				}
 			});
 			this.refresh();
-			
+
 		},
 		methods: {
 			//播放一个视频的时候，需要暂停其他正在播放的视频
-			meIsPlayIng(e){
-				var trailerId =  "";
-				if(e){
+			meIsPlayIng(e) {
+				var trailerId = "";
+				if (e) {
 					trailerId = e.currentTarget.dataset.playingindex
 					this.videoContex = uni.createVideoContext(trailerId);
 				}
-				var hotTrailerList  = this.hotTrailerList;
-				
-				for(var i =0; i< hotTrailerList.length; i++) {
+				var hotTrailerList = this.hotTrailerList;
+
+				for (var i = 0; i < hotTrailerList.length; i++) {
 					var temp = hotTrailerList[i].id;
-					if(temp != trailerId){//其他视频暂停
+					if (temp != trailerId) { //其他视频暂停
 						uni.createVideoContext(temp).pause();
 					}
 				}
 			},
-			refresh(){
+			refresh() {
 				//查询猜你喜欢
 				uni.showLoading({
 					// 防止用户点击某一些按钮
-					mask:true
+					mask: true
 				})
-				var serverUrl = common.serverUrl+ "/index/guessULike?"+ common.qqStr;
+				var serverUrl = common.serverUrl + "/index/guessULike?" + common.qqStr;
 				uni.request({
-					url: serverUrl ,
+					url: serverUrl,
 					method: "POST",
 					success: (res) => {
-						if(res.data.status == 200){
-							this.guessULikeList= res.data.data;
+						if (res.data.status == 200) {
+							this.guessULikeList = res.data.data;
 							console.log("guessULikeList:");
 							console.log(this.guessULikeList);
 						}
 					},
-					complete:() => {
+					complete: () => {
 						uni.hideLoading();
 						uni.stopPullDownRefresh();
 					}
@@ -272,7 +286,7 @@
 				console.log("refresh")
 			},
 			//实现点赞动画效果
-			praiseMe(e){
+			praiseMe(e) {
 				// #ifdef APP-PLUS || MP-WEIXIN
 				//所有的e.currentTarget.dataset的值需要使用小写
 				var gIndex = e.currentTarget.dataset.gindex;
@@ -285,16 +299,16 @@
 				//this.animationData = this.animation.export();
 				this.animationData = this.animation;
 				this.animationDataArr[gIndex] = this.animationData.export();
-				
+
 				//实现还原业务
-				setTimeout(function(){
+				setTimeout(function() {
 					this.animation.translateY(0).opacity(0).step({
 						duration: 0
 					});
 					//this.animationData = this.animation.export();
 					this.animationData = this.animation;
 					this.animationDataArr[gIndex] = this.animationData.export();
-				}.bind(this),500);
+				}.bind(this), 500);
 				// #endif
 			}
 		},

@@ -72,6 +72,14 @@
 				"navigationBarBackgroundColor": "#ffd655"
 			}
         }
+        ,{
+            "path" : "pages/sex/sex",
+            "style" : {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "修改性别",
+				"navigationBarBackgroundColor": "#ffd655"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

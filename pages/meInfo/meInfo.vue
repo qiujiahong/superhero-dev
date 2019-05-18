@@ -58,7 +58,7 @@
 			<view class="item-wapper face-line-upbottom">
 				<view class="info-words">性别</view>
 				
-				<view class="right-wapper">
+				<view class="right-wapper" @click="modifySex">
 					<view class="gray-fields">
 						<view v-if="globalUser.sex == 1">
 							男
@@ -102,6 +102,11 @@
 			this.globalUser = globalUser;
 		},
 		methods: {
+			modifySex(){
+				uni.navigateTo({
+					url: "../sex/sex"
+				})
+			},
 			modifyBirthday(){
 				uni.navigateTo({
 					url: "../meBirthday/meBirthday"
